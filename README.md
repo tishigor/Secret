@@ -17,5 +17,5 @@
 В качестве БД использовал mongo. Я оставил строку подключения к моей БД в mongoDB atlas. Если захотите ее изменить, она тут [server/credentials.js](client/config.js).
 
 ## Примечания
-- Для сервера я явно установил порт 3000, но если вы захотите поменять его, то измените его в двух файликах: [.env](solution_sql.sql) и [client/config.js](client/config.js)
+- Для сервера я явно установил порт 3000, но если вы захотите поменять его, то измените его в двух файликах: [.env](.env) и [client/config.js](client/config.js)
 - Ключи шифрования для crypto хранятся на сервере в [server/credentials.js](client/config.js)
