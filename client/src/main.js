@@ -2,8 +2,8 @@ import {createRouter, createWebHistory} from 'vue-router'
 import {createApp} from 'vue'
 import App from './App.vue'
 
-import Write from "@/components/WriteView.vue";
-import Read from "@/components/ReadView.vue";
+import Write from "./components/WriteView.vue";
+import Read from "./components/ReadView.vue";
 
 const router = createRouter({
     history: createWebHistory(),

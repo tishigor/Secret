@@ -13,7 +13,7 @@ db.on('error', err => {
 })
 db.once('open', () => console.log('Установлено соединение с MongoDB'))
 
-const Content = require('./models/сontent.js')
+const Content = require('./models/content.js')
 
 // Заполнение первоначальными данными.
 const saveFixture = async () => {

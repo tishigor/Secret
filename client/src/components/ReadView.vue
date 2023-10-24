@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Loader from "@/components/Loader.vue";
+import Loader from "./Loader.vue";
 import {useRoute} from 'vue-router'
 import {request} from '../../utils'
 

@@ -4,6 +4,7 @@
   "description": "test task for Areal \"Secret\"",
   "main": "secret.js",
   "scripts": {
+    "start": "node secret.js",
     "dev": "nodemon secret.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
