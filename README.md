@@ -6,12 +6,19 @@
 ## Введение
 Записывайте и читайте зашифрованный контент в браузере. SPA на Vue и API на Express для обмена зашифрованным контентом.
 
-## Установка
+## Установка и запуск
 - Выполните `npm install` для `client` и `server`.
 - Запустите `client` и `server` командой `npm run dev`.
 
 
-  Перейдите на [http://localhost:5173/](http://localhost:5173/)в вашем браузере, все заработает. 
+  Перейдите на [http://localhost:5173/](http://localhost:5173/) в вашем браузере, все заработает. 
+
+
+## Развертывание с docker compose
+В корневой директории выполните
+```bash
+docker-compose -f compose-dev.yaml up
+```
 
 ## MongoDB
 В качестве БД использовал mongo. Я оставил строку подключения к моей БД в mongoDB atlas. Если захотите ее изменить, она тут [server/credentials.js](client/config.js).
