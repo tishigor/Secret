@@ -1,5 +1,13 @@
+version: '3.8'
+
+x-base:
+  &base
+  restart: always
+
+
 services:
   client:
+    <<: *base
     build:
       context: client
 #      target: dev-envs
@@ -8,14 +16,12 @@ services:
     stdin_open: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    restart: always
     networks:
       - react-express
     depends_on:
       - server
 
   server:
-    restart: always
     build:
       context: server
     ports:
@@ -31,7 +37,6 @@ services:
     expose: 
       - 3000
   mongo:
-    restart: always
     image: mongo:4.2.0
     volumes:
       - ./data:/data/db

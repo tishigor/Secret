@@ -8,7 +8,7 @@ export async function request(url, method = 'GET', data = null) {
       headers['Content-Type'] = 'application/json';
       body = JSON.stringify(data);
     }
-    const response = await fetch(`http://localhost:${config.server_port}${url}`, {
+    const response = await fetch(url, {
       method,
       headers,
       body,
