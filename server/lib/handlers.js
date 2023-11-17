@@ -14,6 +14,24 @@ exports.saveContent = async (req, res) => {
   res.status(201).json(context);
 };
 
+exports.getAllContent = async (req, res) => {
+  const { uuid } = req.params;
+  const content = await db.getAllContent({ uuid });
+  if (!content) {
+    return res.status(404).json({ error: 'Контент не найден' });
+  }
+  // todo на этом месте ошибка из-за того что много объектов скорее всего
+  const decryptedText = crypto.getDecrypted(content.secret);
+  const context = {
+    content: {
+      uuid: content.uuid,
+      original: decryptedText,
+      createdAt: content.createdAt,
+    },
+  };
+  res.json(context);
+};
+
 exports.getContent = async (req, res) => {
   const { uuid } = req.params;
   const content = await db.getContent({ uuid });

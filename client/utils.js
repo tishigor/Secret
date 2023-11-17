@@ -1,4 +1,4 @@
-export async function request(url, method = 'GET', data = null) {
+export default async function request(url, method = 'GET', data = null) {
   try {
     const headers = {};
     let body;
@@ -11,7 +11,6 @@ export async function request(url, method = 'GET', data = null) {
       headers,
       body,
     });
-
     return await response.json();
   } catch (e) {
     console.error('Error', e.message);

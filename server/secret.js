@@ -1,15 +1,18 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-const handlers = require('./lib/handlers');
-
+// todo оставил только чтобы локально дебажить сервер. Для контейнеров это не нужно. Видел хорошее решение в оф доке докера
+// https://github.com/docker/awesome-compose/blob/master/react-express-mongodb/backend/db/index.js
 require('dotenv').config();
+
+const handlers = require('./lib/handlers');
 require('./db');
 
 const app = express();
 
 app.use('/api', cors());
 app.use(express.json());
+app.get('/api/content/', handlers.getAllContent);
 app.get('/api/content/:uuid', handlers.getContent);
 app.post('/api/content/', handlers.saveContent);
 app.delete('/api/content/:uuid', handlers.deleteContent);

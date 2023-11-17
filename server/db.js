@@ -47,6 +47,11 @@ module.exports = {
     console.log('Operation "getContent" complete:', result);
     return result;
   },
+  getAllContent: async () => {
+    const result = await Content.find().exec();
+    console.log('Operation "getAllContent" complete:', result);
+    return result;
+  },
   saveContent: async (options = {}) => {
     const result = await Content.create(options);
     console.log('Operation "saveContent" complete:', result);

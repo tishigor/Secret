@@ -13,10 +13,10 @@
 <script>
 import { useRoute } from 'vue-router';
 import Loader from './Loader.vue';
-import { request } from '../../utils';
+import request from '../../utils';
 
 export default {
-  name: 'Read',
+  name: 'ReadView',
   setup() {
     const route = useRoute();
     console.log(route.params.uuid);
@@ -28,7 +28,6 @@ export default {
       () => ({
         loading: false,
         contents: [],
-        page: 'NoteView',
       }),
   async mounted() {
     this.loading = true;
