@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-if (!process.env.MONGO) {
+if (!process.env.MONGODB_URI) {
   console.error('Отсутствует строка подключения к MongoDB!');
   process.exit(1);
 }
-mongoose.connect(process.env.MONGO);
+mongoose.connect(process.env.MONGODB_URI);
 const db = mongoose.connection;
 db.on('error', (err) => {
   console.error(`Ошибка MongoDB:${err.message}`);
