@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-const credentials = require('./credentials');
 
-if (!credentials.mongo.connectionString) {
+if (!process.env.MONGO) {
   console.error('Отсутствует строка подключения к MongoDB!');
   process.exit(1);
 }
-mongoose.connect(credentials.mongo.connectionString);
+mongoose.connect(process.env.MONGO);
 const db = mongoose.connection;
 db.on('error', (err) => {
   console.error(`Ошибка MongoDB:${err.message}`);

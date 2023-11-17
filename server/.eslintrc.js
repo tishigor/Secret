@@ -6,7 +6,7 @@ module.exports = {
     node: true,
   },
   extends: ['plugin:vue/recommended', 'airbnb-base'],
-  plugins: ['vue', 'frabbit-vue'],
+  plugins: ['vue'],
   parserOptions: {
     parser: '@babel/eslint-parser',
     requireConfigFile: false,

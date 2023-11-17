@@ -14,6 +14,7 @@ RUN npm i
 # копируем файлы и каталоги проекта в текущий рабочий каталог (т.е. в каталог 'app')
 COPY . .
 RUN npm run build
+#RUN npm run dev
 
 FROM nginx:1.20
 

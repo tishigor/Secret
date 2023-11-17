@@ -1,5 +1,3 @@
-import config from './config';
-
 export async function request(url, method = 'GET', data = null) {
   try {
     const headers = {};
@@ -8,7 +6,7 @@ export async function request(url, method = 'GET', data = null) {
       headers['Content-Type'] = 'application/json';
       body = JSON.stringify(data);
     }
-    const response = await fetch(url, {
+    const response = await fetch(`http://localhost${url}`, {
       method,
       headers,
       body,

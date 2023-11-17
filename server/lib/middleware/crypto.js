@@ -1,9 +1,9 @@
 const crypto = require('crypto');
-const credentials = require('../../credentials');
+const path = require("path");
 
 const algorithm = 'aes-256-cbc';
-const key = Buffer.from(credentials.crypto.key, 'hex');
-const iv = Buffer.from(credentials.crypto.iv, 'hex');
+const key = Buffer.from(process.env.CRYPTO_KEY, 'hex');
+const iv = Buffer.from(process.env.CRYPTO_IV, 'hex');
 
 exports.getEncrypted = (text) => {
   const cipher = crypto.createCipheriv(algorithm, key, iv);
