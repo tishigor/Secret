@@ -26,73 +26,71 @@
 </template>
 
 <script>
-import Loader from "./Loader.vue";
-import {request} from '../../utils'
+import Loader from './Loader.vue';
+import { request } from '../../utils';
 
 export default {
   name: 'Write',
   components: {
-    Loader
+    Loader,
   },
   data:
-      () => {
-        return {
-          loading: false,
-          form: {
-            value: '',
+      () => ({
+        loading: false,
+        form: {
+          value: '',
+        },
+        contents: [],
+        page: 'NoteView',
+        pages: [
+          {
+            title: 'Read',
+            component: 'NoteView',
           },
-          contents: [],
-          page: 'NoteView',
-          pages: [
-            {
-              title: 'Read',
-              component: 'NoteView',
-            },
-            {
-              title: 'Write',
-              component: 'UploadView',
-            },
-          ],
-        }
-      },
+          {
+            title: 'Write',
+            component: 'UploadView',
+          },
+        ],
+      }),
   computed: {
     canCreate() {
-      return this.form.value.trim()
-    }
+      return this.form.value.trim();
+    },
   },
   methods: {
     async createContent() {
-      if (!this.form.value.trim()) return
-      this.loading = true
-      const {...content} = this.form
-      this.form.value = ''
-      const newContent = await request('/api/content/', 'POST', content)
-      console.log(newContent)
-      this.contents.push(newContent)
-      this.loading = false
+      if (!this.form.value.trim()) return;
+      this.loading = true;
+      const { ...content } = this.form;
+      this.form.value = '';
+      const newContent = await request('/api/content/', 'POST', content);
+      console.log(newContent);
+      this.contents.push(newContent);
+      this.loading = false;
     },
     async removeContent(uuid) {
-      this.loading = true
-      await request(`/api/content/${uuid}`, "DELETE")
-      this.contents = this.contents.filter(c => c.uuid !== uuid)
-      this.loading = false
+      this.loading = true;
+      await request(`/api/content/${uuid}`, 'DELETE');
+      this.contents = this.contents.filter((c) => c.uuid !== uuid);
+      this.loading = false;
     },
     copyText(link) {
-      const tempElement = document.createElement("textarea");
+      const tempElement = document.createElement('textarea');
       tempElement.value = link;
       document.body.appendChild(tempElement);
       tempElement.select();
-      document.execCommand("copy");
+      document.execCommand('copy');
       document.body.removeChild(tempElement);
-      alert("Скопировано!");
+      alert('Скопировано!');
     },
 
   },
   async mounted() {
-    this.loading = true
+    this.loading = true;
     // todo Если будут пользователи
     // this.contents = await request('/api/contacts')
-    this.loading = false
-  }
-}
+    this.loading = false;
+  },
+};
 </script>

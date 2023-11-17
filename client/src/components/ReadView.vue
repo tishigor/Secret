@@ -11,34 +11,31 @@
 </template>
 
 <script>
-import Loader from "./Loader.vue";
-import {useRoute} from 'vue-router'
-import {request} from '../../utils'
-
+import { useRoute } from 'vue-router';
+import Loader from './Loader.vue';
+import { request } from '../../utils';
 
 export default {
   name: 'Read',
   setup() {
-    const route = useRoute()
-    console.log(route.params.uuid)
+    const route = useRoute();
+    console.log(route.params.uuid);
   },
   components: {
-    Loader
+    Loader,
   },
   data:
-      () => {
-        return {
-          loading: false,
-          contents: [],
-          page: 'NoteView',
-        }
-      },
+      () => ({
+        loading: false,
+        contents: [],
+        page: 'NoteView',
+      }),
   async mounted() {
-    this.loading = true
+    this.loading = true;
     const route = useRoute();
-    const uuid = route.params.uuid;
-    this.contents = await request('/api/content/' + uuid)
-    this.loading = false
-  }
-}
+    const { uuid } = route.params;
+    this.contents = await request(`/api/content/${uuid}`);
+    this.loading = false;
+  },
+};
 </script>
