@@ -1,7 +1,9 @@
 <template>
   <Loader v-if="loading"></Loader>
   <div v-else>
-    <div class="card mb-3" v-for="content in contents">
+    <div v-for="content in contents"
+         :key="content.uuid"
+         class="card mb-3" >
       <div class="card-body">
         <h5 class="card-title">{{ content.uuid }}</h5>
         <p class="card-text">{{ content.original }}</p>
@@ -17,10 +19,6 @@ import request from '../../utils';
 
 export default {
   name: 'ReadView',
-  setup() {
-    const route = useRoute();
-    console.log(route.params.uuid);
-  },
   components: {
     Loader,
   },
@@ -34,7 +32,6 @@ export default {
     const route = useRoute();
     const { uuid } = route.params;
     this.contents = await request(`/api/content/${uuid}`);
-    console.log(this.contents);
     this.loading = false;
   },
 };

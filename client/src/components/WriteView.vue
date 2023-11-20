@@ -10,7 +10,9 @@
   </div>
   <Loader v-if="loading"></Loader>
   <div v-else-if="contents.length">
-    <div class="card mb-3" v-for="content in contents">
+    <div v-for="content in contents"
+         :key="content.uuid"
+         class="card mb-3">
       <div class="card-body">
         <h5 class="card-title" style="cursor: pointer"
             @click="copyText(content.uuid)">{{ content.uuid }}</h5>
@@ -56,7 +58,6 @@ export default {
       const { ...content } = this.form;
       this.form.value = '';
       const newContent = await request('/api/content/', 'POST', content);
-      console.log(newContent);
       this.contents.push(newContent);
       this.loading = false;
     },
@@ -79,7 +80,6 @@ export default {
   },
   async mounted() {
     this.loading = true;
-    // todo Если будут пользователи
     this.contents = await request('/api/content/');
     this.loading = false;
   },
