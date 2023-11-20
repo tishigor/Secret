@@ -20,15 +20,14 @@ exports.getAllContent = async (req, res) => {
   if (!content) {
     return res.status(404).json({ error: 'Контент не найден' });
   }
-  // todo на этом месте ошибка из-за того что много объектов скорее всего
-  const decryptedText = crypto.getDecrypted(content.secret);
-  const context = {
-    content: {
-      uuid: content.uuid,
-      original: decryptedText,
-      createdAt: content.createdAt,
-    },
-  };
+  const context = [];
+  content.forEach((item) => {
+    context.push({
+      uuid: item.uuid,
+      original: crypto.getDecrypted(item.secret),
+      createdAt: item.createdAt,
+    });
+  });
   res.json(context);
 };
 
@@ -38,11 +37,10 @@ exports.getContent = async (req, res) => {
   if (!content) {
     return res.status(404).json({ error: 'Контент не найден' });
   }
-  const decryptedText = crypto.getDecrypted(content.secret);
   const context = {
     content: {
       uuid: content.uuid,
-      original: decryptedText,
+      original: crypto.getDecrypted(content.secret),
       createdAt: content.createdAt,
     },
   };

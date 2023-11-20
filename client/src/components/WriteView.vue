@@ -10,7 +10,6 @@
   </div>
   <Loader v-if="loading"></Loader>
   <div v-else-if="contents.length">
-<!--    todo прочекать это-->
     <div class="card mb-3" v-for="content in contents">
       <div class="card-body">
         <h5 class="card-title" style="cursor: pointer"

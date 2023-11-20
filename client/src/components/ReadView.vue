@@ -34,6 +34,7 @@ export default {
     const route = useRoute();
     const { uuid } = route.params;
     this.contents = await request(`/api/content/${uuid}`);
+    console.log(this.contents);
     this.loading = false;
   },
 };
